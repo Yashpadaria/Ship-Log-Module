@@ -35,7 +35,6 @@ Create SaaS Product Ship Log platform
 - Foreign keys and soft deletes
 
 ## Install & Run
-```bash
 composer install
 cp [.env.example](http://_vscodecontentref_/4) .env
 php artisan key:generate
