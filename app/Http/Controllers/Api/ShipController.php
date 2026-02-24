@@ -31,7 +31,6 @@ class ShipController extends Controller
     public function index(): JsonResponse
     {
         try {
-            dd(auth('api')->user());
             $ships = $this->shipService->listShips(request());
 
             return response()->json([
