@@ -11,47 +11,36 @@ Create SaaS Product Ship Log platform
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Ships SaaS Module – Laravel API
+# Shipslog Mini Module
 
-A multi-tenant SaaS-based REST API module for managing ships with company-level data isolation.
+## Architecture
+- Controller: Thin, delegates to Service
+- Service: Business logic, company isolation
+- Requests: Validation
+- Resources: API formatting
 
-## Project Overview
+## Folder Structure
+- app/Http/Controllers/Api
+- app/Services
+- app/Http/Requests
+- app/Http/Resources
+- app/Models
 
-This project is built using Laravel 11 and follows clean architecture principles:
-Controller (Thin)
-Service Layer (Business Logic)
-Form Requests (Validation)
-API Resources (Response Formatting)
-Middleware (Authentication & Isolation)
-Company-level Data Isolation
+## Company-level Isolation
+- All ship queries are scoped by the authenticated user's company_id (see ShipService).
+- Authentication is simulated via FakeAuthMiddleware.
 
-The system ensures that:
-A user can only access ships belonging to their own company.
+## Database
+- Companies, Users, Ships tables
+- Foreign keys and soft deletes
 
-## Architecture Decisions
-
-The project follows a Layered Architecture Pattern:
-Controller → Service → Model
-
-## Installation Guide command
-
-git clone Ship-Log-Module
-cd project-folder
+## Install & Run
+```bash
 composer install
+cp [.env.example](http://_vscodecontentref_/4) .env
 php artisan key:generate
-php artisan migrate
-
-## Best Practices Used
-
-UUID Primary Keys
-Service Layer Pattern
-Form Request Validation
-API Resources
-Thin Controllers
-Multi-tenant Data Isolation
-Proper HTTP Status Codes
-Pagination Support
-Clean Code Structure
+php artisan migrate:fresh --seed
+php artisan serve
 
 ## License
 
